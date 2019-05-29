@@ -92,3 +92,8 @@ struct WeatherSys: Codable {
     var message: Double?
     var country: String?
 }
+
+struct CurrentWeatherArray: Codable {
+    var cnt  : Int?
+    var list : [CurrentWeather]?
+}

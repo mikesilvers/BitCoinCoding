@@ -7,7 +7,10 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 import CoreLocation
+import RxCoreLocation
 
 class MainViewController: UIViewController {
 
@@ -17,12 +20,44 @@ class MainViewController: UIViewController {
     // MARK: - Internal Variables
     private var locationManager     = CLLocationManager()
     private var showLocationRequest = true
-
-    //MARK: - Variables
+    private var disposeBag = DisposeBag()
+    private var currentLocation : CLLocationCoordinate2D?
+    
+    private var mainViewModel = MainViewModel()
     
     // MARK: - View functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // set the location properties to conserve battery
+        locationManager.activityType = .other
+        locationManager.distanceFilter = 2414.02   // only check the distance every 1.5 miles
+        
+        
+        // subscribe to the location manager when it changes
+        locationManager.rx.didChangeAuthorization.subscribe(onNext: { (manager, status) in
+            
+            // if the status changed, start the updating
+            if status == .authorizedWhenInUse {
+                manager.startUpdatingLocation()
+            }
+
+        })
+        .disposed(by: disposeBag)
+
+        // start updating if they already allowed permission
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+            locationManager.startUpdatingLocation()
+        }
+        
+        // watch for the changes in location
+        locationManager.rx.location.do(onNext: { location in
+            if let loc = location {
+                self.currentLocation = loc.coordinate
+            }
+
+        })
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

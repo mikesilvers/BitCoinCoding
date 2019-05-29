@@ -120,6 +120,36 @@ class BitCoinCodingTests: XCTestCase {
 
     }
     
+    func testWeatherCityArray() {
+        
+        var weather = [CurrentWeather]()
+        
+        // read the test JSON file
+        if let filepath = bundle.path(forResource: "MultiCity_Weather", ofType: "json"),
+            let fileData = try? String(contentsOfFile: filepath).data(using: .utf8) {
+            
+            // parse out the weather
+            do {
+                let decoder = JSONDecoder()
+                decoder.dateDecodingStrategy = .iso8601
+                let weatherArray = try decoder.decode(CurrentWeatherArray.self, from: fileData)
+                weather = weatherArray.list ?? [CurrentWeather]()
+            } catch {
+                print(error)
+                XCTAssert(false, "There was a problem parsing the file")
+                // no need for any other tests if the file did not parse
+                return
+            }
+            
+        } else {
+            XCTAssert(false, "The file MultiCity_Weather.json does not exist.")
+        }
+        
+        // check to make sure the correct number of recirds are here
+        XCTAssertTrue(weather.count == 2, "The weather array has \(weather.count) items, expecting 2")
+
+    }
+    
     func testRealmLookup() {
         
         let filename = Bundle.main.path(forResource: "cities", ofType: "realm")
@@ -129,13 +159,15 @@ class BitCoinCodingTests: XCTestCase {
                 // lets lookup London
                 var predicate = NSPredicate(format: "name = %@ AND country = %@", "London", "GB")
                 var city = realmTest.objects(CityLocation.self).filter(predicate)
-                
+                print("\(city[0].name): \(city[0].id)")
+
                 XCTAssertTrue(city.count == 1, "Expecting 1 entry for London, found \(city.count)")
                 
                 // lets lookup Tokyo
                 predicate = NSPredicate(format: "name = %@ AND country = %@", "Tokyo","JP")
                 city = realmTest.objects(CityLocation.self).filter(predicate)
-                
+                print("\(city[0].name): \(city[0].id)")
+
                 XCTAssertTrue(city.count == 1, "Expecting 1 entry for Tokyo, found \(city.count)")
                 
             } else {

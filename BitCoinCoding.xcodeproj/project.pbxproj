@@ -20,6 +20,11 @@
 		12B1F2B9229EDBDF0074E569 /* cities.realm in Resources */ = {isa = PBXBuildFile; fileRef = 12B1F2B8229EDBDF0074E569 /* cities.realm */; };
 		12B1F2BA229EDBDF0074E569 /* cities.realm in Resources */ = {isa = PBXBuildFile; fileRef = 12B1F2B8229EDBDF0074E569 /* cities.realm */; };
 		12B1F2BF229EEC410074E569 /* LatLon_Weather.json in Resources */ = {isa = PBXBuildFile; fileRef = 12B1F2BE229EEC410074E569 /* LatLon_Weather.json */; };
+		12B1F2E4229F07290074E569 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B1F2E3229F07290074E569 /* MainViewModel.swift */; };
+		12B1F30C229F24610074E569 /* MultiCity_Weather.json in Resources */ = {isa = PBXBuildFile; fileRef = 12B1F30B229F24610074E569 /* MultiCity_Weather.json */; };
+		12B1F30D229F29560074E569 /* WeatherStructures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B1F2B1229ED54A0074E569 /* WeatherStructures.swift */; };
+		12B1F30E229F29F70074E569 /* CurrentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B1F2B3229ED55B0074E569 /* CurrentWeather.swift */; };
+		12B1F30F229F29FB0074E569 /* CityLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B1F2B5229ED5D10074E569 /* CityLocation.swift */; };
 		48A198A1BA98E998A0E8ED35 /* Pods_BitCoinCoding.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2200E3A630C59CB045324125 /* Pods_BitCoinCoding.framework */; };
 		B31344A90A3DF1428DC9C80A /* Pods_BitCoinCodingTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DF4E3E3040CABD93CF3A1AF /* Pods_BitCoinCodingTests.framework */; };
 /* End PBXBuildFile section */
@@ -53,6 +58,8 @@
 		12B1F2B5229ED5D10074E569 /* CityLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityLocation.swift; sourceTree = "<group>"; };
 		12B1F2B8229EDBDF0074E569 /* cities.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = cities.realm; sourceTree = "<group>"; };
 		12B1F2BE229EEC410074E569 /* LatLon_Weather.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LatLon_Weather.json; sourceTree = "<group>"; };
+		12B1F2E3229F07290074E569 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		12B1F30B229F24610074E569 /* MultiCity_Weather.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MultiCity_Weather.json; sourceTree = "<group>"; };
 		2200E3A630C59CB045324125 /* Pods_BitCoinCoding.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BitCoinCoding.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B94BAE5BE8AD375B60269CF /* Pods-BitCoinCoding.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitCoinCoding.debug.xcconfig"; path = "Target Support Files/Pods-BitCoinCoding/Pods-BitCoinCoding.debug.xcconfig"; sourceTree = "<group>"; };
 		CAFA50BAD37B201A63649D88 /* Pods-BitCoinCoding.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitCoinCoding.release.xcconfig"; path = "Target Support Files/Pods-BitCoinCoding/Pods-BitCoinCoding.release.xcconfig"; sourceTree = "<group>"; };
@@ -119,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				12B1F2BE229EEC410074E569 /* LatLon_Weather.json */,
+				12B1F30B229F24610074E569 /* MultiCity_Weather.json */,
 				12B1F287229EA6150074E569 /* BitCoinCodingTests.swift */,
 				12B1F289229EA6150074E569 /* Info.plist */,
 			);
@@ -147,6 +155,7 @@
 		12B1F2AE229EA7E00074E569 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				12B1F2E3229F07290074E569 /* MainViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -277,6 +286,7 @@
 			files = (
 				12B1F2BF229EEC410074E569 /* LatLon_Weather.json in Resources */,
 				12B1F2BA229EDBDF0074E569 /* cities.realm in Resources */,
+				12B1F30C229F24610074E569 /* MultiCity_Weather.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,6 +378,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12B1F2E4229F07290074E569 /* MainViewModel.swift in Sources */,
 				12B1F275229EA6110074E569 /* LocationRequestViewController.swift in Sources */,
 				12B1F2B6229ED5D10074E569 /* CityLocation.swift in Sources */,
 				12B1F2B4229ED55B0074E569 /* CurrentWeather.swift in Sources */,
@@ -381,7 +392,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12B1F30D229F29560074E569 /* WeatherStructures.swift in Sources */,
+				12B1F30E229F29F70074E569 /* CurrentWeather.swift in Sources */,
 				12B1F288229EA6150074E569 /* BitCoinCodingTests.swift in Sources */,
+				12B1F30F229F29FB0074E569 /* CityLocation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

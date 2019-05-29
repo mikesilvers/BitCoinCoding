@@ -7,6 +7,7 @@ target 'BitCoinCoding' do
 
   pod 'RxSwift'
   pod 'RxCocoa'
+  pod 'RxCoreLocation'
   
   pod 'RealmSwift'
 
