@@ -1,0 +1,43 @@
+{
+    "coord": {
+        "lon": -77.03,
+        "lat": 38.92
+    },
+    "weather": [
+        {
+            "id": 803,
+            "main": "Clouds",
+            "description": "broken clouds",
+            "icon": "04d"
+        }
+    ],
+    "base": "stations",
+    "main": {
+        "temp": 304.86,
+        "pressure": 1007,
+        "humidity": 43,
+        "temp_min": 303.15,
+        "temp_max": 306.48
+    },
+    "visibility": 16093,
+    "wind": {
+        "speed": 4.1,
+        "deg": 220
+    },
+    "clouds": {
+        "all": 75
+    },
+    "dt": 1559147652,
+    "sys": {
+        "type": 1,
+        "id": 3787,
+        "message": 0.0104,
+        "country": "US",
+        "sunrise": 1559123172,
+        "sunset": 1559175909
+    },
+    "timezone": -14400,
+    "id": 4138106,
+    "name": "District of Columbia",
+    "cod": 200
+}
