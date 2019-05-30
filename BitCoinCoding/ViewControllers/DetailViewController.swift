@@ -10,12 +10,20 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
+    var currentWeather = CurrentWeather()
     
+    @IBOutlet var cityLabel: UILabel!
+    @IBOutlet var windLabel: UILabel!
+    @IBOutlet var cloudLabel: UILabel!
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        cityLabel.text  = currentWeather.name ?? "No City"
+        cloudLabel.text = "\(currentWeather.clouds?.all ?? 0)% cloud coverage"
+        windLabel.text  = "\(currentWeather.wind?.speed ?? 0) mph at \(currentWeather.wind?.deg ?? 0) degrees"
+
+    }
 
     /*
     // MARK: - Navigation

@@ -59,16 +59,20 @@ class MainViewController: UIViewController {
         })
         
         // bind the UI
-//        Observable.combineLatest(mainViewModel.data
-//                                 <#T##source2: ObservableType##ObservableType#>,
-//                                 resultSelector: {mainData, locationData in
-//
-//        })
-        
-        
-        
-        
-        
+        mainViewModel.data
+            .drive(tableView.rx.items(cellIdentifier: "MainCell")) { _, currentWeather, cell in
+                if let tbcell = cell as? MainTableViewCell {
+                    tbcell.currentWeather = currentWeather
+                    // grab the first weather (if there are multiple)
+                    if let theW = currentWeather.weather, let img = theW[0].icon {
+                        tbcell.weatherImage?.cacheImage("https://openweathermap.org/img/w/\(img).png")
+                    } else {
+                        tbcell.weatherImage?.image = nil
+                    }
+                    tbcell.weatherDetailLabel.text = "\(currentWeather.name ?? "Unknown City"): \(currentWeather.main?.temp ?? -1000) degrees"
+                }
+            }
+            .disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -99,7 +103,15 @@ class MainViewController: UIViewController {
             
             lrvc.locationManager = locationManager
             
+        } else if segue.identifier == "DetailSegue",
+            let dtvc = segue.destination as? DetailViewController,
+            let tbcell = sender as? MainTableViewCell {
+            
+            dtvc.currentWeather = tbcell.currentWeather
+            
         }
+        
+        
     }
     
     //MARK: - Button finctions

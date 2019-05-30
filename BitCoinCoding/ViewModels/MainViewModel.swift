@@ -31,12 +31,19 @@ class MainViewModel {
     // MARK: - Support Functions
     static func weatherBy(_ location: Any) -> Observable<[CurrentWeather]> {
         
-        guard let location2D = location as? CLLocationCoordinate2D else { return Observable.just([]) }
+        var weatherByLocation = Observable.just([CurrentWeather]())
         
-        let locWeather = "https://api.openweathermap.org/data/2.5/weather?lat=\(location2D.latitude)&lon=\(location2D.longitude)&units=imperial&APPID=\(weatherKey)"
+        if let location2D = location as? CLLocationCoordinate2D {
         
-        guard let locationWeatherURL = URL(string: locWeather) else {
-            return Observable.just([])
+            let locWeather = "https://api.openweathermap.org/data/2.5/weather?lat=\(location2D.latitude)&lon=\(location2D.longitude)&units=imperial&APPID=\(weatherKey)"
+        
+            if let locationWeatherURL = URL(string: locWeather) {
+        
+                weatherByLocation = URLSession.shared.rx.data(request: URLRequest(url: locationWeatherURL))
+                    .retry(3)
+                    .map(parseSingleJSON)
+
+            }
         }
 
         let twoCitiesWeather = "https://api.openweathermap.org/data/2.5/group?id=2643743,1850147&units=imperial&APPID=\(weatherKey)"
@@ -45,16 +52,11 @@ class MainViewModel {
             return Observable.just([])
         }
 
-        
-        let weatherByLocation = URLSession.shared.rx.data(request: URLRequest(url: locationWeatherURL))
-        .retry(3)
-        .map(parseSingleJSON)
-
-        let weatherByCities = URLSession.shared.rx.data(request: URLRequest(url: twoCitiesWeatherURL))
+        return URLSession.shared.rx.data(request: URLRequest(url: twoCitiesWeatherURL))
             .retry(3)
-            .map(parseSingleJSON)
+            .map(parseMultiJSON)
 
-        return weatherByLocation.concat(weatherByCities)
+//        return weatherByLocation.concat(weatherByCities)
     }
     
     private static func parseSingleJSON(_ json: Data) -> [CurrentWeather] {
