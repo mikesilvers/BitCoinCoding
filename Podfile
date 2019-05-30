@@ -11,13 +11,9 @@ target 'BitCoinCoding' do
   
   pod 'RealmSwift'
 
-
 # testing pods
   target 'BitCoinCodingTests' do
     inherit! :search_paths
-
-    pod 'RxTest'
-    pod 'RxBlocking'
 
   end
 

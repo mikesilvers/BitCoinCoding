@@ -46,7 +46,8 @@ class MainViewController: UIViewController {
 
         // bind the UI
         mainViewModel.data
-            .drive(tableView.rx.items(cellIdentifier: "MainCell")) { _, currentWeather, cell in
+            .asObservable()
+            .bind(to: self.tableView.rx.items(cellIdentifier: "MainCell")) { index, currentWeather, cell in
                 if let tbcell = cell as? MainTableViewCell {
                     tbcell.currentWeather = currentWeather
                     // grab the first weather (if there are multiple)
@@ -59,15 +60,15 @@ class MainViewController: UIViewController {
                 }
             }
             .disposed(by: disposeBag)
-        
+
         // watch for the changes in location
         locationManager.rx
             .location
             .subscribe(onNext: { location in
-                
-//                self.mainViewModel.data.drive()
+
                 if let loc = location {
-                    self.currentLocation = loc.coordinate
+                    self.mainViewModel.currentLocation = loc.coordinate
+                    self.mainViewModel.reloadData()
                 }
             })
             .disposed(by: disposeBag)
@@ -109,8 +110,6 @@ class MainViewController: UIViewController {
             dtvc.currentWeather = tbcell.currentWeather
             
         }
-        
-        
     }
     
     //MARK: - Button finctions

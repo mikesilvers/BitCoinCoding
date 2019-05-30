@@ -13,7 +13,7 @@ struct CurrentWeather : Codable, Equatable {
     var coord: WeatherCoordinate?
     var weather: [Weather]?
     var base: String?
-    var visibility: Int?
+    var visibility: Double?
     var main : WeatherMain?
     var wind : WeatherWind?
     var clouds: WeatherClouds?

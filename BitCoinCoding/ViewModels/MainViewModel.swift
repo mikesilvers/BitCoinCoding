@@ -14,29 +14,48 @@ import CoreLocation
 class MainViewModel {
     
     // MARK: - Variables
-    static var currentLocation = CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0)
+    var currentLocation = CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0)
     
     // MARK: - Internal variables
     private static let weatherKey = "0ff943e7d5281ba0fba4d1d63f43039f"
     
     //MARK: - Observation variables
     let weatherLocation = BehaviorRelay(value: CurrentWeather())
-    
+
     lazy var data: Driver<[CurrentWeather]> = {
         
-        return self.weatherLocation.asObservable()
+        let merge = self.weatherLocation.asObservable()
             .throttle(.milliseconds(300), scheduler: MainScheduler.instance)
-            .distinctUntilChanged()
-            .flatMapLatest { location in MainViewModel.weatherBy(location) }
-            .flatMapLatest { weather in
-                Observable.merge(Observable.just(weather), MainViewModel.weatherOf())}
+            .flatMap { _ in
+                MainViewModel.weatherFromTwoCities()
+            }
+            .flatMap { weather in
+                MainViewModel.weatherBy(self.currentLocation).flatMapLatest { response in
+                    Observable.merge(Observable.just(weather), Observable.just(response))
+                }
+            }
+//            .flatMapLatest { _ in
+//                MainViewModel.weatherFromTwoCities()
+//            }
+//            .flatMapLatest { weather in
+//                MainViewModel.weatherBy(self.currentLocation).flatMapLatest { response in
+//                    Observable.merge(Observable.just(weather), Observable.just(response))
+//                }
+//            }
             .asDriver(onErrorJustReturn: [])
-    }()
 
+        return merge
+    }()
+    
+    func reloadData() {
+        weatherLocation.accept(CurrentWeather())
+    }
+    
     // MARK: - Support Functions
     static func weatherBy(_ location: Any?) -> Observable<[CurrentWeather]> {
         
-        if let location2D = location as? CLLocationCoordinate2D {
+        if let location2D = location as? CLLocationCoordinate2D,
+            location2D.latitude != 0.0 && location2D.longitude != 0.0 {
         
             let locWeather = "https://api.openweathermap.org/data/2.5/weather?lat=\(location2D.latitude)&lon=\(location2D.longitude)&units=imperial&APPID=\(weatherKey)"
         
@@ -52,7 +71,7 @@ class MainViewModel {
         return Observable.just([])
     }
     
-    static func weatherOf() -> Observable<[CurrentWeather]> {
+    static func weatherFromTwoCities() -> Observable<[CurrentWeather]> {
 
         let twoCitiesWeather = "https://api.openweathermap.org/data/2.5/group?id=2643743,1850147&units=imperial&APPID=\(weatherKey)"
         

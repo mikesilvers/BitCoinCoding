@@ -224,7 +224,6 @@
 				12B1F27F229EA6150074E569 /* Sources */,
 				12B1F280229EA6150074E569 /* Frameworks */,
 				12B1F281229EA6150074E569 /* Resources */,
-				B55A06EFD7237AE683F5F297 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -336,23 +335,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BitCoinCoding/Pods-BitCoinCoding-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B55A06EFD7237AE683F5F297 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BitCoinCodingTests/Pods-BitCoinCodingTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BitCoinCodingTests/Pods-BitCoinCodingTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BitCoinCodingTests/Pods-BitCoinCodingTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C099B85310D4ACB0F0CA58D0 /* [CP] Check Pods Manifest.lock */ = {

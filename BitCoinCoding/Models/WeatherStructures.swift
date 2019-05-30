@@ -47,8 +47,8 @@ struct Weather: Codable {
 
 struct WeatherMain: Codable {
     var temp      : Double?
-    var pressure  : Int?
-    var humidity  : Int?
+    var pressure  : Double?
+    var humidity  : Double?
     var temp_min  : Double?
     var temp_max  : Double?
     var sea_level : Double?
@@ -56,7 +56,7 @@ struct WeatherMain: Codable {
 }
 
 struct WeatherWind: Codable {
-    var deg  : Int?
+    var deg  : Double?
     var speed: Double?
 }
 
@@ -65,8 +65,8 @@ struct WeatherClouds: Codable {
 }
 
 struct WeatherRain: Codable {
-    var OneH  : Int?
-    var ThreeH: Int?
+    var OneH  : Double?
+    var ThreeH: Double?
     
     enum CodingKeys: String,CodingKey {
         case OneH   = "1h"
@@ -75,8 +75,8 @@ struct WeatherRain: Codable {
 }
 
 struct WeatherSnow: Codable {
-    var OneH  : Int?
-    var ThreeH: Int?
+    var OneH  : Double?
+    var ThreeH: Double?
     
     enum CodingKeys: String, CodingKey {
         case OneH   = "1h"
