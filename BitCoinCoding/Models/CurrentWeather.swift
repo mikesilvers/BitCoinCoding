@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct CurrentWeather : Codable {
+struct CurrentWeather : Codable, Equatable {
     
     var coord: WeatherCoordinate?
     var weather: [Weather]?
@@ -26,4 +26,16 @@ struct CurrentWeather : Codable {
     var cod: Int?
     var timezone: Int?
     
+    
+    static func == (lhs: CurrentWeather, rhs: CurrentWeather) -> Bool {
+        
+        // get the string representations of the data
+        var lhsDump = String()
+        dump(lhs, to: &lhsDump)
+        
+        var rhsDump = String()
+        dump(rhs, to: &rhsDump)
+        
+        return rhsDump == lhsDump
+    }
 }

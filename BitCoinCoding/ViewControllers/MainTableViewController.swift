@@ -58,6 +58,17 @@ class MainViewController: UIViewController {
 
         })
         
+        // bind the UI
+//        Observable.combineLatest(mainViewModel.data
+//                                 <#T##source2: ObservableType##ObservableType#>,
+//                                 resultSelector: {mainData, locationData in
+//
+//        })
+        
+        
+        
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

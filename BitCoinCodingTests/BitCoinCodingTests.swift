@@ -175,4 +175,122 @@ class BitCoinCodingTests: XCTestCase {
             }
         }
     }
+    
+    func testWeatherEquatable () {
+        
+        // read the sample data and get ourselves for testing
+        var weather = [CurrentWeather]()
+        
+        // read the test JSON file
+        if let filepath = bundle.path(forResource: "MultiCity_Weather", ofType: "json"),
+            let fileData = try? String(contentsOfFile: filepath).data(using: .utf8) {
+            
+            // parse out the weather
+            do {
+                let decoder = JSONDecoder()
+                decoder.dateDecodingStrategy = .iso8601
+                let weatherArray = try decoder.decode(CurrentWeatherArray.self, from: fileData)
+                weather = weatherArray.list ?? [CurrentWeather]()
+            } catch {
+                print(error)
+                XCTAssert(false, "There was a problem parsing the file")
+                // no need for any other tests if the file did not parse
+                return
+            }
+            
+        } else {
+            XCTAssert(false, "The file MultiCity_Weather.json does not exist.")
+        }
+        
+        // check to make sure the correct number of recirds are here
+        XCTAssertTrue(weather.count == 2, "The weather array has \(weather.count) items, expecting 2")
+
+        // lets start the tests
+        var w1 = weather[0]
+        let w2 = weather[0]
+
+        XCTAssertTrue(w1 == w2)
+
+        // test with a new weather array for the current weather
+        w1.weather = [Weather(id: 111111, main: nil, icon: "o)1", description: "weather")]
+        XCTAssertFalse(w1 == w2)
+        
+        // test again
+        w1 = w2
+        w1.snow = WeatherSnow(OneH: 1, ThreeH: 10)
+        XCTAssertFalse(w1 == w2)
+
+        // test again
+        w1 = w2
+        w1.base = "Test"
+        XCTAssertFalse(w1 == w2)
+
+        // test again
+        w1 = w2
+        w1.clouds = WeatherClouds(all: 10)
+        XCTAssertFalse(w1 == w2)
+
+        // test again
+        w1 = w2
+        w1.cod = 2
+        XCTAssertFalse(w1 == w2)
+
+        // test again
+        w1 = w2
+        w1.coord = WeatherCoordinate(lat: 1.0, lon: -1.0)
+        XCTAssertFalse(w1 == w2)
+
+        // test again
+        w1 = w2
+        w1.dt = 1
+        XCTAssertFalse(w1 == w2)
+
+        // test again
+        w1 = w2
+        w1.id = 23456
+        XCTAssertFalse(w1 == w2)
+
+        // test again
+        w1 = w2
+        w1.main = WeatherMain(temp: 100.0,
+                              pressure: 20,
+                              humidity: 20,
+                              temp_min: nil,
+                              temp_max: nil,
+                              sea_level: nil,
+                              grnd_level: nil)
+        XCTAssertFalse(w1 == w2)
+
+        // test again
+        w1 = w2
+        w1.rain = WeatherRain(OneH: 2, ThreeH: 2)
+        XCTAssertFalse(w1 == w2)
+
+        // test again
+        w1 = w2
+        w1.snow = WeatherSnow(OneH: 0, ThreeH: 0)
+        XCTAssertFalse(w1 == w2)
+
+        // test again
+        w1 = w2
+        w1.sys = WeatherSys(id: 12345,
+                            type: 3,
+                            sunset: nil,
+                            sunrise: nil,
+                            message: 10.2,
+                            country: nil)
+        XCTAssertFalse(w1 == w2)
+
+        // test again
+        w1 = w2
+        w1.timezone = -14400
+        XCTAssertFalse(w1 == w2)
+
+        // test again
+        w1 = w2
+        w1.wind = WeatherWind(deg: 230, speed: 5.5)
+        XCTAssertFalse(w1 == w2)
+
+        
+    }
 }
