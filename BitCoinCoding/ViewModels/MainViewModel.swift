@@ -13,6 +13,9 @@ import CoreLocation
 
 class MainViewModel {
     
+    // MARK: - Variables
+    static var currentLocation = CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0)
+    
     // MARK: - Internal variables
     private static let weatherKey = "0ff943e7d5281ba0fba4d1d63f43039f"
     
@@ -24,14 +27,14 @@ class MainViewModel {
         return self.weatherLocation.asObservable()
             .throttle(.milliseconds(300), scheduler: MainScheduler.instance)
             .distinctUntilChanged()
-            .flatMapLatest(MainViewModel.weatherBy)
+            .flatMapLatest { location in MainViewModel.weatherBy(location) }
+            .flatMapLatest { weather in
+                Observable.merge(Observable.just(weather), MainViewModel.weatherOf())}
             .asDriver(onErrorJustReturn: [])
     }()
 
     // MARK: - Support Functions
-    static func weatherBy(_ location: Any) -> Observable<[CurrentWeather]> {
-        
-        var weatherByLocation = Observable.just([CurrentWeather]())
+    static func weatherBy(_ location: Any?) -> Observable<[CurrentWeather]> {
         
         if let location2D = location as? CLLocationCoordinate2D {
         
@@ -39,12 +42,17 @@ class MainViewModel {
         
             if let locationWeatherURL = URL(string: locWeather) {
         
-                weatherByLocation = URLSession.shared.rx.data(request: URLRequest(url: locationWeatherURL))
+                return URLSession.shared.rx.data(request: URLRequest(url: locationWeatherURL))
                     .retry(3)
                     .map(parseSingleJSON)
-
             }
         }
+        
+        // no location - just an empty
+        return Observable.just([])
+    }
+    
+    static func weatherOf() -> Observable<[CurrentWeather]> {
 
         let twoCitiesWeather = "https://api.openweathermap.org/data/2.5/group?id=2643743,1850147&units=imperial&APPID=\(weatherKey)"
         
@@ -55,15 +63,13 @@ class MainViewModel {
         return URLSession.shared.rx.data(request: URLRequest(url: twoCitiesWeatherURL))
             .retry(3)
             .map(parseMultiJSON)
-
-//        return weatherByLocation.concat(weatherByCities)
     }
     
     private static func parseSingleJSON(_ json: Data) -> [CurrentWeather] {
 
         // this is a single location request
         guard let cw = try? JSONDecoder().decode(CurrentWeather.self, from: json) else { return [] }
-        
+
         // this process will get all current weather and append it to the main return
         return [cw]
 
