@@ -18,7 +18,7 @@ class LocationRequestViewController: UIViewController {
     @IBOutlet var titleLabel   : UILabel!
     @IBOutlet var messageLabel : UILabel!
 
-    // MARK: Public variables
+    // MARK: - Public variables
     var locationManager : CLLocationManager?
 
     // MARK: - View functions
@@ -29,6 +29,7 @@ class LocationRequestViewController: UIViewController {
         var message = ""
         var title   = "Requesting Location"
         
+        // determines the status of the location authorization to customize the message displayed.
         switch CLLocationManager.authorizationStatus() {
         case .authorizedWhenInUse:
             print("Nothing")
@@ -47,6 +48,12 @@ class LocationRequestViewController: UIViewController {
     }
     
     // MARK: - Button functions
+    
+    /**
+     The user is allowing location access.
+     
+     Wehn the user allows location access, this will prompt using the Apple request prompt.
+    */
     @IBAction func youBetButton(_ sender: UIButton) {
         
         // this view will not be presented if they already authorized location,
@@ -62,7 +69,7 @@ class LocationRequestViewController: UIViewController {
             }
             
         } else {
-            // request permission (when is use only - the lease permission we need)
+            // request permission (when is use only - the lowest permission we need)
             locationManager?.requestWhenInUseAuthorization()
         }
         

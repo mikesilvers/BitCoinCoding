@@ -10,20 +10,11 @@ import UIKit
 
 class MainTableViewCell: UITableViewCell {
 
-    public var currentWeather = CurrentWeather()
+    //MARK: - variables
+    var currentWeather = CurrentWeather()
     
+    //MARK: - UI variables
     @IBOutlet var weatherImage       : UIImageView!
     @IBOutlet var weatherDetailLabel : UILabel!
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
 
 }
