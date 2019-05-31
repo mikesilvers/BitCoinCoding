@@ -129,7 +129,8 @@ class MainViewController: UITableViewController {
             let labeltext = "\(cell.currentWeather.name ?? "No City Name"): \(cell.currentWeather.main?.temp ?? -9999) degrees"
             cell.weatherDetailLabel.text = labeltext
 
-            // setup the image
+            // setup the image - we are using a image cache to minimize netwoek traffic when retrieving the
+            // images from the remote server
             if let ci = cell.currentWeather.weather?[0],
                 let img = ci.icon {
                 cell.weatherImage.cacheImage("https://openweathermap.org/img/w/\(img).png")
