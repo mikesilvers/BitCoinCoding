@@ -41,4 +41,4 @@ Weather details when you click on one item
 - Navigation
 
 
-If you have any questions please reach out to ​jared@bitcoin.com​. Thanks.
+If you have any questions please reach out to ​(email removed). Thanks.
