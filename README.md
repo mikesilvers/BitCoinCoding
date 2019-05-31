@@ -19,6 +19,6 @@ I was using RxCocoa to provide table updates, but pulled that option out when th
 
 The problem I encountered using RxCocoa for the table is:
 
-There are two different API calls required.  One call for a group of two known locations and the other call using location information.  When combining the results for the two calls, RxCocoa was creating two table sections.  I was not able, in a timely manner, to combine the results into a single Observable without the table sections.  There were several options I attempted, but the results were the same.  I had already used quite a bit of time and was not able, due to time, to implement RxDataSources.
+There are two different API calls required.  One call for a group of two known locations and the other call using location information.  When combining the results for the two calls, RxCocoa was creating two table sections.  I was not able, in a timely manner, to combine the results into a single Observable without the table sections.  There were several options I attempted, but the results were the same.  I had already used quite a bit of time and was not able, due to time, to implement RxDataSources.  If you would like to review where I was in the process, please review the branch `corelocation`.
 
 If this issue occurred in practice, I would discuss the issue with the tema leader and come up with the appropriate resolution at that time.
