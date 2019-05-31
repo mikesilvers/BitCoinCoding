@@ -5,11 +5,8 @@ target 'BitCoinCoding' do
 
   use_frameworks!
 
-  pod 'RxSwift'
-  pod 'RxCocoa'
-  pod 'RxCoreLocation'
-  
   pod 'RealmSwift'
+  pod 'RxCoreLocation'
 
 # testing pods
   target 'BitCoinCodingTests' do

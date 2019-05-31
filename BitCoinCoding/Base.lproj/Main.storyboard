@@ -14,68 +14,55 @@
         <scene sceneID="URl-6I-bM0">
             <objects>
                 <viewController id="ofj-6W-Nqj" customClass="MainViewController" customModule="BitCoinCoding" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="pjA-oQ-dq3">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Qri-Bd-yK2">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vvR-JY-yQx">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MainCell" id="bEo-LU-EL4" customClass="MainTableViewCell" customModule="BitCoinCoding" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bEo-LU-EL4" id="Zgi-jC-p3E">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Yw3-3K-JRY">
-                                                    <rect key="frame" x="0.0" y="0.0" width="43.5" height="43.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" secondItem="Yw3-3K-JRY" secondAttribute="height" id="4cQ-Vr-oeC"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bgj-A1-Bm9">
-                                                    <rect key="frame" x="48.5" y="1" width="364.5" height="43.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="43.5" id="BHv-H2-kJq"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="Yw3-3K-JRY" firstAttribute="top" secondItem="Zgi-jC-p3E" secondAttribute="top" id="4pw-PW-Mo5"/>
-                                                <constraint firstItem="bgj-A1-Bm9" firstAttribute="bottom" secondItem="Zgi-jC-p3E" secondAttribute="bottom" constant="1" id="4yx-jV-NuZ"/>
-                                                <constraint firstItem="Yw3-3K-JRY" firstAttribute="leading" secondItem="Zgi-jC-p3E" secondAttribute="leading" id="8bh-iV-tGS"/>
-                                                <constraint firstItem="bgj-A1-Bm9" firstAttribute="top" secondItem="Zgi-jC-p3E" secondAttribute="top" constant="1" id="M3d-V6-x34"/>
-                                                <constraint firstItem="Yw3-3K-JRY" firstAttribute="bottom" secondItem="Zgi-jC-p3E" secondAttribute="bottom" id="OfD-sB-TL4"/>
-                                                <constraint firstItem="bgj-A1-Bm9" firstAttribute="leading" secondItem="Yw3-3K-JRY" secondAttribute="trailing" constant="5" id="QA6-cE-gid"/>
-                                                <constraint firstItem="bgj-A1-Bm9" firstAttribute="trailing" secondItem="Zgi-jC-p3E" secondAttribute="trailing" constant="-1" id="qg3-9c-ynn"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="weatherDetailLabel" destination="bgj-A1-Bm9" id="PWI-V7-jNe"/>
-                                            <outlet property="weatherImage" destination="Yw3-3K-JRY" id="sbJ-ay-1rx"/>
-                                            <segue destination="QNB-KW-hur" kind="show" identifier="DetailSegue" id="vVi-YQ-2C8"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                        </subviews>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="vvR-JY-yQx" firstAttribute="leading" secondItem="nhR-M2-C9M" secondAttribute="leading" id="7sQ-xt-olw"/>
-                            <constraint firstItem="vvR-JY-yQx" firstAttribute="top" secondItem="nhR-M2-C9M" secondAttribute="top" id="o0h-TT-Sa8"/>
-                            <constraint firstItem="nhR-M2-C9M" firstAttribute="bottom" secondItem="vvR-JY-yQx" secondAttribute="bottom" id="ooV-1r-tBf"/>
-                            <constraint firstItem="nhR-M2-C9M" firstAttribute="trailing" secondItem="vvR-JY-yQx" secondAttribute="trailing" id="q5l-cu-C1a"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="nhR-M2-C9M"/>
-                    </view>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MainCell" id="HPv-4d-9Zd" customClass="MainTableViewCell" customModule="BitCoinCoding" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HPv-4d-9Zd" id="A0Z-4i-Gsy">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5uh-Ne-ZNu">
+                                            <rect key="frame" x="1" y="1" width="42" height="42"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="5uh-Ne-ZNu" secondAttribute="height" id="PzR-rt-FHr"/>
+                                                <constraint firstAttribute="height" constant="42" id="mtX-fc-zgf"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mrm-iv-bJG">
+                                            <rect key="frame" x="48" y="12" width="345" height="22"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="mrm-iv-bJG" firstAttribute="top" secondItem="A0Z-4i-Gsy" secondAttribute="topMargin" constant="1" id="HXr-vJ-9LF"/>
+                                        <constraint firstItem="mrm-iv-bJG" firstAttribute="bottom" secondItem="A0Z-4i-Gsy" secondAttribute="bottomMargin" constant="1" id="VR6-cF-ZCg"/>
+                                        <constraint firstItem="mrm-iv-bJG" firstAttribute="leading" secondItem="5uh-Ne-ZNu" secondAttribute="trailing" constant="5" id="hs8-Ci-i48"/>
+                                        <constraint firstItem="mrm-iv-bJG" firstAttribute="trailing" secondItem="A0Z-4i-Gsy" secondAttribute="trailingMargin" constant="-1" id="jDS-bU-oxb"/>
+                                        <constraint firstItem="5uh-Ne-ZNu" firstAttribute="leading" secondItem="A0Z-4i-Gsy" secondAttribute="leading" constant="1" id="pkp-dA-Fzs"/>
+                                        <constraint firstItem="5uh-Ne-ZNu" firstAttribute="top" secondItem="A0Z-4i-Gsy" secondAttribute="top" constant="1" id="x8P-rb-bVJ"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="weatherDetailLabel" destination="mrm-iv-bJG" id="OPd-P9-wK8"/>
+                                    <outlet property="weatherImage" destination="5uh-Ne-ZNu" id="Vfh-pK-xSe"/>
+                                    <segue destination="QNB-KW-hur" kind="show" identifier="DetailSegue" id="9b9-uB-A8H"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="ofj-6W-Nqj" id="mX4-di-Sj3"/>
+                            <outlet property="delegate" destination="ofj-6W-Nqj" id="PMg-q2-84I"/>
+                        </connections>
+                    </tableView>
                     <navigationItem key="navigationItem" id="UqI-dT-dlv"/>
                     <connections>
-                        <outlet property="tableView" destination="vvR-JY-yQx" id="HeL-6f-NPe"/>
                         <segue destination="bXQ-vl-a1e" kind="show" identifier="LocationRequestSegue" id="eQo-hb-1Xr"/>
                     </connections>
                 </viewController>

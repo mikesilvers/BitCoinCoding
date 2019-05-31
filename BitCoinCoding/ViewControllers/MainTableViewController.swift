@@ -8,20 +8,18 @@
 
 import UIKit
 import RxSwift
-import RxCocoa
 import CoreLocation
 import RxCoreLocation
 
-class MainViewController: UIViewController {
-
-    // MARK: - UI Variables
-    @IBOutlet var tableView: UITableView!
+class MainViewController: UITableViewController {
     
     // MARK: - Internal Variables
     private var locationManager     = CLLocationManager()
     private var showLocationRequest = true
     private var disposeBag = DisposeBag()
     private var currentLocation : CLLocationCoordinate2D?
+    
+    private var dataSource = [CurrentWeather]()
     
     private var mainViewModel = MainViewModel()
     
@@ -43,32 +41,15 @@ class MainViewController: UIViewController {
 
         })
         .disposed(by: disposeBag)
-
-        // bind the UI
-        mainViewModel.data
-            .asObservable()
-            .bind(to: self.tableView.rx.items(cellIdentifier: "MainCell")) { index, currentWeather, cell in
-                if let tbcell = cell as? MainTableViewCell {
-                    tbcell.currentWeather = currentWeather
-                    // grab the first weather (if there are multiple)
-                    if let theW = currentWeather.weather, let img = theW[0].icon {
-                        tbcell.weatherImage?.cacheImage("https://openweathermap.org/img/w/\(img).png")
-                    } else {
-                        tbcell.weatherImage?.image = nil
-                    }
-                    tbcell.weatherDetailLabel.text = "\(currentWeather.name ?? "Unknown City"): \(currentWeather.main?.temp ?? -1000) degrees"
-                }
-            }
-            .disposed(by: disposeBag)
-
+        
         // watch for the changes in location
         locationManager.rx
             .location
             .subscribe(onNext: { location in
 
                 if let loc = location {
-                    self.mainViewModel.currentLocation = loc.coordinate
-                    self.mainViewModel.reloadData()
+                    self.currentLocation = loc.coordinate
+                    self.reloadData()
                 }
             })
             .disposed(by: disposeBag)
@@ -82,6 +63,8 @@ class MainViewController: UIViewController {
         if CLLocationManager.authorizationStatus() != .authorizedWhenInUse, showLocationRequest {
             performSegue(withIdentifier: "LocationRequestSegue", sender: nil)
         }
+        
+        reloadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -119,7 +102,60 @@ class MainViewController: UIViewController {
         showLocationRequest = false
     }
 
-    
+    //MARK: - TableDatasource functions
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return dataSource.count
+    }
 
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
     
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MainCell", for: indexPath)
+        
+        if let cell = cell as? MainTableViewCell {
+            
+            cell.currentWeather = dataSource[indexPath.row]
+
+            // setup the main label text
+            let labeltext = "\(cell.currentWeather.name ?? "No City Name"): \(cell.currentWeather.main?.temp ?? -9999) degrees"
+            cell.weatherDetailLabel.text = labeltext
+
+            // setup the image
+            if let ci = cell.currentWeather.weather?[0],
+                let img = ci.icon {
+                cell.weatherImage.cacheImage("https://openweathermap.org/img/w/\(img).png")
+            } else {
+                cell.weatherImage = nil
+            }
+        }
+        
+        return cell
+
+    }
+    
+    //MARK: - TableView Delegate functions
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath, animated: false)
+    
+    }
+    
+    //MARK: - Supporting functions
+    func reloadData() {
+        
+        // reload the data
+        if let currentLocation = currentLocation {
+            mainViewModel.currentLocation = currentLocation
+        }
+        
+        mainViewModel.updateData { (data) in
+            self.dataSource = data
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
 }

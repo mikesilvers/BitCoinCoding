@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		12833E9322A09CA300744C54 /* Ext.URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12833E9222A09CA300744C54 /* Ext.URL.swift */; };
 		12B1F273229EA6110074E569 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B1F272229EA6110074E569 /* AppDelegate.swift */; };
 		12B1F275229EA6110074E569 /* LocationRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B1F274229EA6110074E569 /* LocationRequestViewController.swift */; };
 		12B1F278229EA6110074E569 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12B1F276229EA6110074E569 /* Main.storyboard */; };
@@ -42,6 +43,7 @@
 /* Begin PBXFileReference section */
 		08502B0B7BB310C7E633C997 /* Pods-BitCoinCodingTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitCoinCodingTests.debug.xcconfig"; path = "Target Support Files/Pods-BitCoinCodingTests/Pods-BitCoinCodingTests.debug.xcconfig"; sourceTree = "<group>"; };
 		0DF4E3E3040CABD93CF3A1AF /* Pods_BitCoinCodingTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BitCoinCodingTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		12833E9222A09CA300744C54 /* Ext.URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ext.URL.swift; sourceTree = "<group>"; };
 		12B1F26F229EA6110074E569 /* BitCoinCoding.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BitCoinCoding.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12B1F272229EA6110074E569 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		12B1F274229EA6110074E569 /* LocationRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationRequestViewController.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 			children = (
 				12B1F2B8229EDBDF0074E569 /* cities.realm */,
 				12B1F325229F777C0074E569 /* ImageCache.swift */,
+				12833E9222A09CA300744C54 /* Ext.URL.swift */,
 			);
 			path = Supporting;
 			sourceTree = "<group>";
@@ -373,6 +376,7 @@
 				12B1F2B6229ED5D10074E569 /* CityLocation.swift in Sources */,
 				12B1F2B4229ED55B0074E569 /* CurrentWeather.swift in Sources */,
 				12B1F2B2229ED54A0074E569 /* WeatherStructures.swift in Sources */,
+				12833E9322A09CA300744C54 /* Ext.URL.swift in Sources */,
 				12B1F2B0229EB0CB0074E569 /* MainTableViewController.swift in Sources */,
 				12B1F273229EA6110074E569 /* AppDelegate.swift in Sources */,
 				12B1F2C2229F03AC0074E569 /* DetailViewController.swift in Sources */,
