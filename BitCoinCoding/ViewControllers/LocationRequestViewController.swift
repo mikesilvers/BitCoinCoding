@@ -45,6 +45,17 @@ class LocationRequestViewController: UIViewController {
         // set the message to the label
         messageLabel.text = message
         titleLabel.text   = title
+        
+        // hide the navigation bar for the location request
+        navigationController?.isNavigationBarHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // reset the navigation bar
+        navigationController?.isNavigationBarHidden = false
+
     }
     
     // MARK: - Button functions

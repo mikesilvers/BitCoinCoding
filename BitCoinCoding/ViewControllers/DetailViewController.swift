@@ -27,6 +27,8 @@ class DetailViewController: UIViewController {
         cloudLabel.text = "\(currentWeather.clouds?.all ?? 0)% cloud coverage"
         windLabel.text  = "\(currentWeather.wind?.speed ?? 0) mph at \(currentWeather.wind?.deg ?? 0) degrees"
 
+        navigationItem.title = "Weather Details"
+
     }
 
 }

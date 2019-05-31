@@ -81,6 +81,8 @@ class MainViewController: UITableViewController {
         // we reset the showing location so they will be displayed the location request screen if
         // they display this view again.
         showLocationRequest = true
+        
+        navigationItem.title = "Weather Center"
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
