@@ -18,6 +18,7 @@ class MainViewController: UITableViewController {
     private var showLocationRequest = true
     private var disposeBag = DisposeBag()
     private var currentLocation : CLLocationCoordinate2D?
+    private let refresher = UIRefreshControl()
     
     private var dataSource = [CurrentWeather]()
     
@@ -55,6 +56,10 @@ class MainViewController: UITableViewController {
             })
             .disposed(by: disposeBag)
 
+        // setup the refresh control
+        tableView.refreshControl = refresher
+        refresher.addTarget(self, action: #selector(refreshTable(_:)), for: .valueChanged)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -157,11 +162,14 @@ class MainViewController: UITableViewController {
     */
     func reloadData() {
         
+        // end the refreshing
+        refresher.endRefreshing()
+        
         // set the current location (if there is a current location)
         if let currentLocation = currentLocation {
             mainViewModel.currentLocation = currentLocation
         }
-        
+
         // uses the data model to update the data source and update the table.
         mainViewModel.updateData { (data) in
             self.dataSource = data
@@ -169,5 +177,12 @@ class MainViewController: UITableViewController {
                 self.tableView.reloadData()
             }
         }
+    }
+    
+    @objc private func refreshTable(_ sender: Any) {
+        
+        // and reload the actual data
+        reloadData()
+
     }
 }
