@@ -19,10 +19,6 @@ class BitCoinCodingTests: XCTestCase {
         bundle = Bundle(for: type(of: self))
     }
 
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
     func testWeatherDecoding() {
         
         var weather = CurrentWeather()
@@ -148,32 +144,6 @@ class BitCoinCodingTests: XCTestCase {
         // check to make sure the correct number of recirds are here
         XCTAssertTrue(weather.count == 2, "The weather array has \(weather.count) items, expecting 2")
 
-    }
-    
-    func testRealmLookup() {
-        
-        let filename = Bundle.main.path(forResource: "cities", ofType: "realm")
-        if let filename = filename {
-            let url = URL(fileURLWithPath: filename)
-            if let realmTest = try? Realm(fileURL: url) {
-                // lets lookup London
-                var predicate = NSPredicate(format: "name = %@ AND country = %@", "London", "GB")
-                var city = realmTest.objects(CityLocation.self).filter(predicate)
-                print("\(city[0].name): \(city[0].id)")
-
-                XCTAssertTrue(city.count == 1, "Expecting 1 entry for London, found \(city.count)")
-                
-                // lets lookup Tokyo
-                predicate = NSPredicate(format: "name = %@ AND country = %@", "Tokyo","JP")
-                city = realmTest.objects(CityLocation.self).filter(predicate)
-                print("\(city[0].name): \(city[0].id)")
-
-                XCTAssertTrue(city.count == 1, "Expecting 1 entry for Tokyo, found \(city.count)")
-                
-            } else {
-                XCTAssert(false, "There was a problem locating the database")
-            }
-        }
     }
     
     func testWeatherEquatable () {

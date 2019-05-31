@@ -17,9 +17,6 @@
 		12B1F2B0229EB0CB0074E569 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B1F2AF229EB0CB0074E569 /* MainTableViewController.swift */; };
 		12B1F2B2229ED54A0074E569 /* WeatherStructures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B1F2B1229ED54A0074E569 /* WeatherStructures.swift */; };
 		12B1F2B4229ED55B0074E569 /* CurrentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B1F2B3229ED55B0074E569 /* CurrentWeather.swift */; };
-		12B1F2B6229ED5D10074E569 /* CityLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B1F2B5229ED5D10074E569 /* CityLocation.swift */; };
-		12B1F2B9229EDBDF0074E569 /* cities.realm in Resources */ = {isa = PBXBuildFile; fileRef = 12B1F2B8229EDBDF0074E569 /* cities.realm */; };
-		12B1F2BA229EDBDF0074E569 /* cities.realm in Resources */ = {isa = PBXBuildFile; fileRef = 12B1F2B8229EDBDF0074E569 /* cities.realm */; };
 		12B1F2BF229EEC410074E569 /* LatLon_Weather.json in Resources */ = {isa = PBXBuildFile; fileRef = 12B1F2BE229EEC410074E569 /* LatLon_Weather.json */; };
 		12B1F2C2229F03AC0074E569 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B1F2C1229F03AC0074E569 /* DetailViewController.swift */; };
 		12B1F2E4229F07290074E569 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B1F2E3229F07290074E569 /* MainViewModel.swift */; };
@@ -57,8 +54,6 @@
 		12B1F2AF229EB0CB0074E569 /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
 		12B1F2B1229ED54A0074E569 /* WeatherStructures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherStructures.swift; sourceTree = "<group>"; };
 		12B1F2B3229ED55B0074E569 /* CurrentWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeather.swift; sourceTree = "<group>"; };
-		12B1F2B5229ED5D10074E569 /* CityLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityLocation.swift; sourceTree = "<group>"; };
-		12B1F2B8229EDBDF0074E569 /* cities.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = cities.realm; sourceTree = "<group>"; };
 		12B1F2BE229EEC410074E569 /* LatLon_Weather.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LatLon_Weather.json; sourceTree = "<group>"; };
 		12B1F2C1229F03AC0074E569 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		12B1F2E3229F07290074E569 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
@@ -154,7 +149,6 @@
 			children = (
 				12B1F2B1229ED54A0074E569 /* WeatherStructures.swift */,
 				12B1F2B3229ED55B0074E569 /* CurrentWeather.swift */,
-				12B1F2B5229ED5D10074E569 /* CityLocation.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -170,7 +164,6 @@
 		12B1F2B7229EDBC80074E569 /* Supporting */ = {
 			isa = PBXGroup;
 			children = (
-				12B1F2B8229EDBDF0074E569 /* cities.realm */,
 				12B1F325229F777C0074E569 /* ImageCache.swift */,
 				12833E9222A09CA300744C54 /* Ext.URL.swift */,
 			);
@@ -281,7 +274,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				12B1F2B9229EDBDF0074E569 /* cities.realm in Resources */,
 				12B1F27D229EA6150074E569 /* LaunchScreen.storyboard in Resources */,
 				12B1F27A229EA6150074E569 /* Assets.xcassets in Resources */,
 				12B1F278229EA6110074E569 /* Main.storyboard in Resources */,
@@ -293,7 +285,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				12B1F2BF229EEC410074E569 /* LatLon_Weather.json in Resources */,
-				12B1F2BA229EDBDF0074E569 /* cities.realm in Resources */,
 				12B1F30C229F24610074E569 /* MultiCity_Weather.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -373,7 +364,6 @@
 				12B1F2E4229F07290074E569 /* MainViewModel.swift in Sources */,
 				12B1F324229F6CB10074E569 /* MainTableViewCell.swift in Sources */,
 				12B1F275229EA6110074E569 /* LocationRequestViewController.swift in Sources */,
-				12B1F2B6229ED5D10074E569 /* CityLocation.swift in Sources */,
 				12B1F2B4229ED55B0074E569 /* CurrentWeather.swift in Sources */,
 				12B1F2B2229ED54A0074E569 /* WeatherStructures.swift in Sources */,
 				12833E9322A09CA300744C54 /* Ext.URL.swift in Sources */,

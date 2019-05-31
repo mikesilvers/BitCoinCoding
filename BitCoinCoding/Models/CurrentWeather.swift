@@ -8,6 +8,12 @@
 
 import Foundation
 
+/**
+ A container for the current weather conditions.
+ 
+ Contains all related information about the current weather for a specific location.
+ All variables are optional to easily decode the JSON document.
+ */
 struct CurrentWeather : Codable, Equatable {
     
     var coord: WeatherCoordinate?
@@ -26,7 +32,7 @@ struct CurrentWeather : Codable, Equatable {
     var cod: Int?
     var timezone: Int?
     
-    
+    //MARK: - Equatable functions
     static func == (lhs: CurrentWeather, rhs: CurrentWeather) -> Bool {
         
         // get the string representations of the data
