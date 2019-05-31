@@ -6,8 +6,6 @@
 //  Copyright © 2019 Mike Silvers. All rights reserved.
 //
 
-import RealmSwift
-
 import XCTest
 @testable import BitCoinCoding
 
@@ -19,7 +17,7 @@ class BitCoinCodingTests: XCTestCase {
         bundle = Bundle(for: type(of: self))
     }
 
-    func testWeatherDecoding() {
+    func testWeatherObjectDecodingFromKnownJSONFiles() {
         
         var weather = CurrentWeather()
         
@@ -116,7 +114,7 @@ class BitCoinCodingTests: XCTestCase {
 
     }
     
-    func testWeatherCityArray() {
+    func testWeatherCityArrayFromKnownJSONFiles() {
         
         var weather = [CurrentWeather]()
         
@@ -146,7 +144,7 @@ class BitCoinCodingTests: XCTestCase {
 
     }
     
-    func testWeatherEquatable () {
+    func testWeatherEquatable() {
         
         // read the sample data and get ourselves for testing
         var weather = [CurrentWeather]()
@@ -185,37 +183,37 @@ class BitCoinCodingTests: XCTestCase {
         w1.weather = [Weather(id: 111111, main: nil, icon: "o)1", description: "weather")]
         XCTAssertFalse(w1 == w2)
         
-        // test again
+        // making changes to the snow
         w1 = w2
         w1.snow = WeatherSnow(OneH: 1, ThreeH: 10)
         XCTAssertFalse(w1 == w2)
 
-        // test again
+        // making changes to the base name
         w1 = w2
         w1.base = "Test"
         XCTAssertFalse(w1 == w2)
 
-        // test again
+        // making changes to the clouds
         w1 = w2
         w1.clouds = WeatherClouds(all: 10)
         XCTAssertFalse(w1 == w2)
 
-        // test again
+        // making changes to the cod
         w1 = w2
         w1.cod = 2
         XCTAssertFalse(w1 == w2)
 
-        // test again
+        // making changes to the weather coordinate
         w1 = w2
         w1.coord = WeatherCoordinate(lat: 1.0, lon: -1.0)
         XCTAssertFalse(w1 == w2)
 
-        // test again
+        // making changes to the time
         w1 = w2
         w1.dt = 1
         XCTAssertFalse(w1 == w2)
 
-        // test again
+        // making changes to the id
         w1 = w2
         w1.id = 23456
         XCTAssertFalse(w1 == w2)
@@ -231,17 +229,12 @@ class BitCoinCodingTests: XCTestCase {
                               grnd_level: nil)
         XCTAssertFalse(w1 == w2)
 
-        // test again
+        // making changes to the rain
         w1 = w2
         w1.rain = WeatherRain(OneH: 2, ThreeH: 2)
         XCTAssertFalse(w1 == w2)
 
-        // test again
-        w1 = w2
-        w1.snow = WeatherSnow(OneH: 0, ThreeH: 0)
-        XCTAssertFalse(w1 == w2)
-
-        // test again
+        // making changes to the sys
         w1 = w2
         w1.sys = WeatherSys(id: 12345,
                             type: 3,
@@ -251,12 +244,12 @@ class BitCoinCodingTests: XCTestCase {
                             country: nil)
         XCTAssertFalse(w1 == w2)
 
-        // test again
+        // making changes to the timezone
         w1 = w2
         w1.timezone = -14400
         XCTAssertFalse(w1 == w2)
 
-        // test again
+        // making changes to the wind
         w1 = w2
         w1.wind = WeatherWind(deg: 230, speed: 5.5)
         XCTAssertFalse(w1 == w2)

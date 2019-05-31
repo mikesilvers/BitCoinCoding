@@ -13,6 +13,7 @@ PODS:
 
 DEPENDENCIES:
   - RxCoreLocation
+  - RxSwift
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -27,6 +28,6 @@ SPEC CHECKSUMS:
   RxRelay: 4f7409406a51a55cd88483f21ed898c234d60f18
   RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
 
-PODFILE CHECKSUM: 73b39dee28b1e627e21b7c2c689cbf6a0a2eb522
+PODFILE CHECKSUM: e33267f0e55b70e038c4187f62b5e44b965ecbd2
 
 COCOAPODS: 1.7.0
